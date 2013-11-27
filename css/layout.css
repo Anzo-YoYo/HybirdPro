@@ -1,0 +1,11 @@
+.col1, .col2, .col3, .cols {float:left}
+.col1 {width:276px}
+.col2 {width:585px}
+/* index.php */
+/* index-1.php */
+#page2 .cols {width:525px;padding-bottom:2px}
+/* index-2.php */
+/* index-3.php */
+/* index-4.php */
+/* index-5.php */
+/* index-6.php */
