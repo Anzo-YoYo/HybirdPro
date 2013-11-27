@@ -78,11 +78,11 @@ class MySqlDatabase {
                 $row = (array)$row;
                 unset ($row["queryString"]);
                 $APIList[] = $row;
-//                array(
-//                    "vin"=>$row['vin'],
-//                    "sales_person"=>$row['sales_person'],
-//                    "sales_discount"=>$row['sales_discount'],
-//                );
+            //                array(
+            //                    "vin"=>$row['vin'],
+            //                    "sales_person"=>$row['sales_person'],
+            //                    "sales_discount"=>$row['sales_discount'],
+            //                );
             }else {
                 $html .= '<div class="box2">
                                 <div class="box2_top">
@@ -110,6 +110,22 @@ class MySqlDatabase {
         $this->queryCount += 1;
         $this->logQuery($sql, $start);
         return array("data" => $APIList , "time" => $this->queries[0]["time"]);
+    }
+
+
+    function queryChart($sql) {
+        echo "[";
+
+        $start = $this->getTime();
+        $query = $this->conn->prepare($sql);
+        $query->execute();
+        $html = '';
+        for($i=0; $row =  $query->fetch(MYSQLI_ASSOC) ;  $i++) {
+            echo "['" .$row["sales_person"]. "', " .$row["total"]. "],";
+        }
+        echo "];";
+        $this->queryCount += 1;
+        $this->logQuery($sql, $start);
     }
 
 	/*-----------------------------------
@@ -238,7 +254,7 @@ class PQPExample {
 
     public function __destruct() {
 
-        if(!$this->isAPI) 
+        if(!$this->isAPI)
             $this->profiler->display($this->db);
     }
 

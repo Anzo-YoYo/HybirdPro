@@ -164,13 +164,13 @@ require_once('content/header.php');
 
                         </article>
                         <article class="col1 pad_left1" style="margin-top: -250px;">
-                            <h2>Advantages</h2>
+                            <h2>Advantages of Columnar DB</h2>
                             <ul class="list2">
-                                <li><a href="#"><img src="images/icon1.jpg" alt="">Starting up</a></li>
-                                <li><a href="#"><img src="images/icon2.jpg" alt="">Finance and grants</a></li>
-                                <li><a href="#"><img src="images/icon3.jpg" alt="">Taxes, returns &amp; payroll</a></li>
-                                <li><a href="#"><img src="images/icon4.jpg" alt="">Employment &amp; skills</a></li>
-                                <li class="bg_none"><a href="#"><img src="images/icon5.jpg" alt="">Health, safety, premises</a></li>
+                                <li><a href="#"><img src="images/icon1.jpg" alt="">Real Time Analytics</a></li>
+                                <li><a href="#"><img src="images/icon2.jpg" alt="">Cost Effective</a></li>
+                                <li><a href="#"><img src="images/icon3.jpg" alt="">Fast</a></li>
+                                <li><a href="#"><img src="images/icon4.jpg" alt="">Safer</a></li>
+                                <li class="bg_none"><a href="#"><img src="images/icon5.jpg" alt="">Time, safety, premises</a></li>
                             </ul>
                             <div class="box1">
                                 <div class="box1_bot">

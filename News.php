@@ -15,6 +15,12 @@ require_once('content/header.php');
         <script type="text/javascript" src="js/cufon-replace.js"></script>
         <script type="text/javascript" src="js/Copse_400.font.js"></script>
         <script type="text/javascript" src="js/imagepreloader.js"></script>
+
+        <link class="include" rel="stylesheet" type="text/css" href="js/plot/jquery.jqplot.min.css" />
+        <link type="text/css" rel="stylesheet" href="js/plot/examples/syntaxhighlighter/styles/shCoreDefault.min.css" />
+        <link type="text/css" rel="stylesheet" href="js/plot/examples/syntaxhighlighter/styles/shThemejqPlot.min.css" />
+
+
         <script type="text/javascript">
             preloadImages([
                 'images/menu1_active.gif',
@@ -83,36 +89,97 @@ require_once('content/header.php');
                     <div class="wrapper">
                         <article class="col2">
                             <div class="pad1">
-                                <h2>Latest News</h2>
-                                <div class="wrapper">
-                                    <figure class="left"><img src="images/marker_1.gif" alt=""></figure>
-                                    <div class="cols">
-                                        <p><span class="font1"><strong>22.02.2011</strong>  <a href="#">At vero eos et accusamus et iusto odio dignissimos</a></span>
-									Quas molestias excepturi sint occaecati cupiditate non provident, similique suntulpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                                    </div>
-                                </div>
-                                <div class="wrapper">
-                                    <figure class="left"><img src="images/marker_1.gif" alt=""></figure>
-                                    <div class="cols">
-                                        <p><span class="font1"><strong>10.02.2011 </strong>  <a href="#">Eque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur</a></span>
-									Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus idod maxime placeat facere possimus, omnis voluptas assumenda.</p>
-                                    </div>
-                                </div>
-                                <div class="wrapper">
-                                    <figure class="left"><img src="images/marker_1.gif" alt=""></figure>
-                                    <div class="cols">
-                                        <p><span class="font1"><strong>29.01.2011 </strong>  <a href="#">Utenim ad minima veniam, quis nostrum exercitationem ullam<br>
-                                                </a></span>
-									Eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaquarum rerum hic tenetur a sapiente delectusut aut reiciendis.</p>
-                                    </div>
-                                </div>
-                                <div class="wrapper pad_bot1">
-                                    <figure class="left"><img src="images/marker_1.gif" alt=""></figure>
-                                    <div class="cols">
-                                        <p><span class="font1"><strong>23.01.2011 </strong>  <a href="#">Quis autem vel eum iure reprehenderit</a></span>
-									Voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquaenim ad minim veniam.</p>
-                                    </div>
-                                </div>
+                                <h2>Latest Statistics</h2>
+
+
+                                <script>
+                                    $(document).ready(function(){
+                                        var data =<?php
+$sql = 'select sales_person, count(*) as total
+from fact_sales_wide
+where sales_person is not null
+group by sales_person
+limit 7';
+$pqp->db->connectHybird(true);
+$pqp->db->queryChart($sql);
+?>
+
+        var plot1 = jQuery.jqplot ('chart1', [data],
+        {
+            seriesDefaults: {
+                // Make this a pie chart.
+                renderer: jQuery.jqplot.PieRenderer,
+                rendererOptions: {
+                    // Put data labels on the pie slices.
+                    // By default, labels show the percentage of the slice.
+
+                    showDataLabels: true
+                }
+            },
+            legend: { show:true, location: 'e' }
+        }
+    );
+    });
+                                </script>
+
+
+
+                                <div id="chart1" style="width:600px; height:250px;"></div>
+
+                                <b>
+                                Comparison between Col and Row DB CRUD [Orange=>R, Blue=>C]</b><br/>
+                                <script>
+                                    $(document).ready(function(){
+                                        var s1 = [3.05, 6.09, 5, 4];
+                                        var s2 = [17, 2,5 ,3 ];
+                                        var ticks = ['Select', 'Insert', 'Update', 'Delete'];
+
+                                        plot2 = $.jqplot('chart2', [s1, s2], {
+                                            seriesDefaults: {
+                                                renderer:$.jqplot.BarRenderer,
+                                                pointLabels: { show: true }
+                                            },
+                                            axes: {
+                                                xaxis: {
+                                                    renderer: $.jqplot.CategoryAxisRenderer,
+                                                    ticks: ticks
+                                                }
+                                            }
+                                        });
+
+                                        $('#chart2').bind('jqplotDataHighlight',
+                                        function (ev, seriesIndex, pointIndex, data) {
+                                            $('#info2').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+                                        }
+                                    );
+
+                                        $('#chart2').bind('jqplotDataUnhighlight',
+                                        function (ev) {
+                                            $('#info2').html('Nothing');
+                                        }
+                                    );
+                                    });
+                                </script>
+                                <br/><br/>
+                                <div id="chart2" style="width:600px; height:250px;"></div>
+
+
+                                <!-- Don't touch this! -->
+                                <script class="include" type="text/javascript" src="js/plot/jquery.jqplot.min.js"></script>
+                                <script type="text/javascript" src="js/plot/examples/syntaxhighlighter/scripts/shCore.min.js"></script>
+                                <script type="text/javascript" src="js/plot/examples/syntaxhighlighter/scripts/shBrushJScript.min.js"></script>
+                                <script type="text/javascript" src="js/plot/examples/syntaxhighlighter/scripts/shBrushXml.min.js"></script>
+                                <!-- End Don't touch this! -->
+
+                                <script type="text/javascript" src="js/jqplot.pieRenderer.min.js"></script>
+                                <script type="text/javascript" src="js/jqplot.donutRenderer.min.js"></script>
+                                <script class="include" type="text/javascript" src="js/plot/plugins/jqplot.barRenderer.min.js"></script>
+                                <script class="include" type="text/javascript" src="js/plot/plugins/jqplot.pieRenderer.min.js"></script>
+                                <script class="include" type="text/javascript" src="js/plot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+                                <script class="include" type="text/javascript" src="js/plot/plugins/jqplot.pointLabels.min.js"></script>
+
+
+
                             </div>
                         </article>
                         <article class="col1 pad_left1">
@@ -221,5 +288,5 @@ require_once('content/header.php');
             </div>
         </div>
         <script type="text/javascript"> Cufon.now(); </script>
-    
+
 <?php require_once('content/footer.php'); ?>

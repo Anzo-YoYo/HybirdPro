@@ -83,25 +83,63 @@ require_once('content/header.php');
                     <div class="wrapper">
                         <article class="col2">
                             <div class="pad1">
-                                <h2>Contact Form</h2>
-                                <form id="ContactForm" method="post">
-                                    <div>
-                                        <div  class="wrapper">
-                                            <strong>Name:</strong>
-                                            <div class="bg"><input type="text" class="input" ></div>
-                                        </div>
-                                        <div  class="wrapper">
-                                            <strong>Email:</strong>
-                                            <div class="bg"><input type="text" class="input" >	</div>
-                                        </div>
-                                        <div  class="textarea_box">
-                                            <strong>Message:</strong>
-                                            <div class="bg"><textarea name="textarea" cols="1" rows="1"></textarea>		</div>
-                                        </div>
-                                        <a href="#" class="button" onClick="document.getElementById('ContactForm').submit()"><span><span>Send</span></span></a>
-                                        <a href="#" class="button" onClick="document.getElementById('ContactForm').reset()"><span><span>Clear</span></span></a>
-                                    </div>
-                                </form>
+                                <h2>API Calls</h2>
+                                <ol>
+                                    <li>
+                                        <a target="_blank" href="http://localhost/HybirdPro/api.php?searchH=JHA31378361943378&key=vin">
+                                            Hybirs API [20M]: seraching for all car sales with vin = JHA31378361943378
+                                        </a>
+                                    </li>
+                                    <br/>
+                                    
+                                    <li>
+                                        <a target="_blank" href="http://localhost/HybirdPro/api.php?searchH=BARREN&key=sales_person">
+                                            Hybirs API [20M]: seraching for all car sales with sales_person = BARREN
+                                        </a>
+                                    </li>
+
+                                    <br/>
+
+                                     <li>
+                                        <a target="_blank" href="http://localhost/HybirdPro/api.php?searchR=JHA31378361943378&key=vin">
+                                              Row API [10M]: seraching for all car sales with vin = JHA31378361943378
+                                        </a>
+                                    </li>
+
+                                    <br/>
+                                    
+                                    <li>
+                                        <a target="_blank" href="http://localhost/HybirdPro/api.php?searchR=BARREN&key=sales_person">
+                                            Row API [10M]: seraching for all car sales with sales_person = BARREN
+                                        </a>
+                                    </li>
+
+                                    <br/>
+
+
+
+                                        <li>
+                                        <a target="_blank" href="http://localhost/HybirdPro/adSearch.php?from='2007-05-02'&dealer_name=A&to=2012-05-04">
+                                            Advanced Search on Hybird API [20M]: seraching for all car sales with dealer_name = contains A and date from '2007-05-02' to '2012-05-04'
+                                        </a>
+                                    </li>
+
+                                    <br/>
+
+
+
+
+                                        <li>
+                                        <a target="_blank" href="http://localhost/HybirdPro/adSearch.php?from='2007-05-02'&dealer_name=H&to=2012-05-04">
+                                            Advanced Search on Hybird API [20M]: seraching for all car sales with dealer_name = contains H and date from '2007-05-02' to '2012-05-04'
+                                        </a>
+                                    </li>
+
+                                    
+                                    
+                                    
+                                </ol>
+
                             </div>
 
                         </article>
